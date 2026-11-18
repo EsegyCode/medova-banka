@@ -1,0 +1,38 @@
+---
+import { products } from '../data/products.ts';
+---
+<section id="products" class="section">
+  <div class="container">
+    <h2 class="section-title">Наш мед</h2>
+    <p class="section-subtitle">Три сорти свіжого меду 2026 року у банках 1 л і відрах 3 л</p>
+    <div class="product-grid">
+      {products.map((p) => (
+        <article class="card product-card">
+          <div class="product-card__image placeholder" aria-hidden="true">TODO: фото меду</div>
+          <div class="product-card__body">
+            <h3>{p.name}</h3>
+            <p>{p.shortDesc}</p>
+            <div class="product-card__prices">
+              <div><span class="price-label">1 л</span><span class="price-value">{p.price1L} грн</span></div>
+              <div><span class="price-label">3 л</span><span class="price-value">{p.price3L} грн</span></div>
+            </div>
+            <button type="button" class="btn btn-cta" data-open-modal data-product={p.id}>Замовити</button>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p class="product-note">Фасування: скло або харчові пластикові відра — за бажанням клієнта.</p>
+  </div>
+</section>
+
+<style>
+  .product-grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+  .product-card__image { min-height: 180px; display: flex; align-items: center; justify-content: center; background: var(--color-bg-alt); color: var(--color-text-muted); font-size: .9rem; }
+  .product-card__body { padding: 1.25rem; display: grid; gap: .75rem; }
+  .product-card__body h3 { color: var(--color-brand); }
+  .product-card__prices { display: flex; gap: 1.5rem; }
+  .price-label { display: block; font-size: .85rem; color: var(--color-text-muted); }
+  .price-value { font-weight: 700; font-size: 1.1rem; color: var(--color-brand); }
+  .product-note { text-align: center; margin-top: 1.5rem; color: var(--color-text-muted); font-size: .9rem; }
+</style>

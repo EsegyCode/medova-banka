@@ -1,0 +1,44 @@
+---
+import { products } from '../data/products.ts';
+---
+<section id="prices" class="section">
+  <div class="container">
+    <h2 class="section-title">Ціни на мед</h2>
+    <p class="section-subtitle">Ціни актуальні для меду урожаю 2026 року. Фасування: скло або харчові пластикові відра — як вам зручніше. Доставка оплачується за тарифами перевізника, самовивіз у Сумах безкоштовний.</p>
+    <div class="price-table-wrap">
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Позиція</th>
+            <th>1 л</th>
+            <th>3 л</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((p) => (
+            <tr>
+              <td>{p.name}</td>
+              <td>{p.price1L} грн</td>
+              <td>{p.price3L} грн</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <div class="wholesale">
+      <p><strong>Оптовим покупцям від 20 л — ціна нижча на 20%.</strong></p>
+      <button type="button" class="btn btn-cta" data-open-modal data-product="opt">Запитати оптову ціну</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .price-table-wrap { overflow-x: auto; margin: 2rem auto; max-width: 640px; }
+  .price-table { width: 100%; border-collapse: collapse; background: var(--color-surface); border-radius: var(--radius-card); overflow: hidden; box-shadow: var(--shadow-card); }
+  .price-table th, .price-table td { padding: .9rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); }
+  .price-table th { background: var(--color-brand); color: var(--color-white-text); }
+  .price-table tbody tr:last-child td { border-bottom: none; }
+  .price-table td:nth-child(2), .price-table td:nth-child(3), .price-table th:nth-child(2), .price-table th:nth-child(3) { text-align: right; font-weight: 600; }
+  .wholesale { text-align: center; margin-top: 1rem; }
+  .wholesale p { margin-bottom: 1rem; }
+</style>

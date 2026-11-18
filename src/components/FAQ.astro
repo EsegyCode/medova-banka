@@ -1,0 +1,34 @@
+---
+import { faqItems } from '../data/faq.ts';
+interface Props { limit?: number; showLink?: boolean; }
+const { limit, showLink = true } = Astro.props;
+const items = typeof limit === 'number' ? faqItems.slice(0, limit) : faqItems;
+---
+<section id="faq" class="section-alt" aria-labelledby="faq-title">
+  <div class="container">
+    <h2 id="faq-title" class="section-title">Питання та відповіді</h2>
+    <div class="faq-list">
+      {items.map((it) => (
+        <details class="faq-item">
+          <summary>{it.q}</summary>
+          <div class="faq-answer">{it.a}</div>
+        </details>
+      ))}
+    </div>
+    {limit && showLink && (
+      <div class="faq-more">
+        <a class="btn btn-outline" href="/pytannya-vidpovidi/">Усі питання</a>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .faq-list { max-width: 840px; margin: 1.5rem auto; display: grid; gap: .75rem; }
+  .faq-item { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-btn); padding: 1rem 1.25rem; box-shadow: var(--shadow-card); }
+  .faq-item summary { cursor: pointer; font-weight: 600; color: var(--color-brand); list-style: none; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item[open] summary { margin-bottom: .5rem; }
+  .faq-answer { color: var(--color-text-muted); }
+  .faq-more { text-align: center; margin-top: 1.5rem; }
+</style>

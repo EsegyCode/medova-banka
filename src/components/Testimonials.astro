@@ -1,0 +1,27 @@
+---
+import { reviews } from '../data/reviews.ts';
+---
+<section id="reviews" class="section">
+  <div class="container">
+    <h2 class="section-title">Нас обирають</h2>
+    <p class="section-subtitle">Наш мед купують односельці й сусіди, пенсіонери, мешканці міста. Дякуємо всім, хто довіряє нашій пасіці.</p>
+    {reviews.length > 0 && (
+      <div class="testimonials-grid">
+        {reviews.map((r) => (
+          <blockquote class="card testimonial">
+            <p>«{r.text}»</p>
+            <footer>— {r.name}{r.source ? ` (${r.source})` : ''}</footer>
+          </blockquote>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .testimonials-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; margin-top: 1.5rem; }
+  @media (min-width: 900px) { .testimonials-grid { grid-template-columns: repeat(3, 1fr); } }
+  .testimonial { padding: 1.25rem; }
+  .testimonial p { color: var(--color-text-muted); font-style: italic; }
+  .testimonial footer { margin-top: .75rem; font-weight: 600; color: var(--color-brand); font-size: .9rem; }
+</style>

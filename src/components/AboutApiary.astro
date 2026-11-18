@@ -1,0 +1,19 @@
+---
+---
+<section class="about section">
+  <div class="container about__inner">
+    <div>
+      <h2 class="section-title" style="text-align:left;">Про нашу пасіку</h2>
+      <p>Це власна пасіка родини Кривцових із Сумщини. Головний бджоляр — Сергій Олександрович Кривцов, у пасічництві понад 25 років: старанний майстер із золотими руками. У нас 15 вуликів, тому мед збираємо невеликими партіями й продаємо тільки власного виробництва. Усе, що ви замовляєте, зібране нами цього року.</p>
+      <a class="btn btn-outline" href="/pro-pasiku/">Читати більше</a>
+    </div>
+    <div class="about__image placeholder" aria-hidden="true">TODO: фото пасіки</div>
+  </div>
+</section>
+
+<style>
+  .about__inner { display: grid; gap: 2rem; align-items: center; }
+  .about__image { min-height: 240px; border-radius: var(--radius-card); background: var(--color-bg-alt); display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); }
+  .about p { color: var(--color-text-muted); }
+  @media (min-width: 900px) { .about__inner { grid-template-columns: 1fr 1fr; } }
+</style>

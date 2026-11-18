@@ -1,0 +1,57 @@
+---
+---
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__logo" href="/">Медова Банка</a>
+    <nav class="site-nav" aria-label="Головне меню">
+      <button class="site-nav__burger" type="button" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="site-nav-menu">☰</button>
+      <ul class="site-nav__menu" id="site-nav-menu">
+        <li><a href="/#products">Продукція</a></li>
+        <li><a href="/#prices">Ціни</a></li>
+        <li><a href="/dostavka-ta-oplata/">Доставка і оплата</a></li>
+        <li><a href="/pro-pasiku/">Про пасіку</a></li>
+        <li><a href="/pytannya-vidpovidi/">Питання та відповіді</a></li>
+        <li><a href="/kontakty/">Контакти</a></li>
+      </ul>
+    </nav>
+    <div class="site-header__right">
+      <a class="site-header__phone" href="tel:+380997011256">+38 (099) 701-12-56</a>
+      <button class="btn btn-cta btn-sm site-header__cta" type="button" data-open-modal>Замовити</button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header { background: var(--color-surface); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; z-index: 100; }
+  .site-header__inner { display: flex; align-items: center; gap: 1rem; padding-block: .75rem; flex-wrap: wrap; }
+  .site-header__logo { font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-brand); font-weight: 700; white-space: nowrap; }
+  .site-nav { flex: 1; }
+  .site-nav__burger { display: none; font-size: 1.5rem; background: none; border: none; cursor: pointer; min-width: 44px; min-height: 44px; }
+  .site-nav__menu { list-style: none; display: flex; gap: .25rem .75rem; flex-wrap: wrap; }
+  .site-nav__menu a { padding: .4rem .6rem; min-height: 44px; display: inline-flex; align-items: center; border-radius: var(--radius-btn); }
+  .site-nav__menu a:hover { background: var(--color-bg-alt); }
+  .site-header__right { display: flex; align-items: center; gap: .75rem; margin-left: auto; }
+  .site-header__phone { font-weight: 600; white-space: nowrap; display: none; }
+  .btn-sm { padding: .5rem 1rem; min-height: 44px; font-size: .9rem; }
+  @media (min-width: 900px) { .site-header__phone { display: inline; } }
+  @media (max-width: 899px) {
+    .site-nav__burger { display: inline-flex; align-items: center; justify-content: center; }
+    .site-nav__menu { display: none; flex-direction: column; width: 100%; padding: .5rem 0; }
+    .site-nav__menu.is-open { display: flex; }
+    .site-header__right { margin-left: 0; }
+    .site-header__phone { display: inline; font-size: .9rem; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var burger = document.getElementById('burger');
+    var menu = document.getElementById('site-nav-menu');
+    if (burger && menu) {
+      burger.addEventListener('click', function () {
+        var open = menu.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', String(open));
+      });
+    }
+  })();
+</script>

@@ -1,0 +1,48 @@
+---
+---
+<section class="honey-sorts section-alt">
+  <div class="container">
+    <h2 class="section-title">Який мед обрати</h2>
+    <div class="sorts">
+      <article class="sort-card card">
+        <h3>Липовий мед</h3>
+        <dl>
+          <dt>Колір і аромат</dt><dd>світлий, золотистий відтінок, насичений запах липового цвіту.</dd>
+          <dt>Смак</dt><dd>насичений і виразний, у горлі відчувається легке «пощипування» — це характерна риса сорту.</dd>
+          <dt>Консистенція</dt><dd>у рідкому вигляді прозорий, з часом дрібно кристалізується.</dd>
+          <dt>Як використовувати</dt><dd>до чаю, молока, на сніданок з хлібом і сиром, у напоях.</dd>
+        </dl>
+      </article>
+      <article class="sort-card card">
+        <h3>Соняшниковий мед</h3>
+        <dl>
+          <dt>Колір і аромат</dt><dd>яскраво-жовтий, м'який квітковий аромат.</dd>
+          <dt>Смак</dt><dd>ніжний, солодкий, з легкою терпкістю.</dd>
+          <dt>Консистенція</dt><dd>густішає швидко, стає щільним, кремовим. Це природний процес, а не ознака псування.</dd>
+          <dt>Як використовувати</dt><dd>на хліб і млинці, до каш і сирників, у випічці.</dd>
+        </dl>
+      </article>
+      <article class="sort-card card">
+        <h3>Мед з різнотрав'я</h3>
+        <dl>
+          <dt>Колір і аромат</dt><dd>від світло-золотистого до бурштинового, аромат лугових трав.</dd>
+          <dt>Смак</dt><dd>збалансований, багатий, щороку трохи різний залежно від того, що цвіло.</dd>
+          <dt>Консистенція</dt><dd>помірно густа, кристалізується з часом.</dd>
+          <dt>Як використовувати</dt><dd>універсальний мед на щодень: до чаю, десертів, соусів, випічки.</dd>
+        </dl>
+      </article>
+    </div>
+    <p class="sort-note">Кристалізація — природна властивість меду. Рідкий вигляд можна повернути, обережно підігрівши банку на водяній бані до 35–40 °C.</p>
+  </div>
+</section>
+
+<style>
+  .sorts { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .sorts { grid-template-columns: repeat(3, 1fr); } }
+  .sort-card { padding: 1.5rem; }
+  .sort-card h3 { color: var(--color-brand); margin-bottom: .75rem; }
+  .sort-card dl { display: grid; gap: .5rem; }
+  .sort-card dt { font-weight: 600; color: var(--color-brand); font-size: .95rem; }
+  .sort-card dd { color: var(--color-text-muted); font-size: .95rem; margin: 0 0 .25rem; }
+  .sort-note { text-align: center; margin-top: 1.5rem; color: var(--color-text-muted); font-size: .9rem; }
+</style>

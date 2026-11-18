@@ -22,7 +22,7 @@ export const products: Product[] = [
     price3L: 840,
   },
   {
-    id: 'riznотravya',
+    id: 'riznotravya',
     name: 'Мед з різнотрав\'я',
     shortDesc: 'Універсальний мед з нектару лугових трав і квітів. Смак і відтінок залежать від того, що цвіло.',
     price1L: 340,

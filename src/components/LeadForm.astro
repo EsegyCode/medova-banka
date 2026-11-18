@@ -1,0 +1,172 @@
+---
+interface Props {
+  source?: string;
+  product?: string;
+}
+const { source = 'section', product = '' } = Astro.props;
+const mockEnv = import.meta.env.PUBLIC_LEAD_MOCK;
+const MOCK_MODE = mockEnv !== 'false';
+---
+<form class="lead-form" data-lead-form data-source={source} novalidate>
+  <input type="hidden" name="source" value={source} />
+  <input type="hidden" name="product" value={product} />
+  <input type="hidden" name="page_url" value="" />
+  <div class="hp-field" aria-hidden="true">
+    <label for={`company-${source}`}>Компанія</label>
+    <input id={`company-${source}`} name="company" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="form-row">
+    <label for={`name-${source}`}>Ім'я *</label>
+    <input id={`name-${source}`} name="name" type="text" required maxlength="80" autocomplete="given-name" />
+    <p class="form-error" data-error-for="name" aria-live="polite"></p>
+  </div>
+
+  <div class="form-row">
+    <label for={`phone-${source}`}>Телефон *</label>
+    <input id={`phone-${source}`} name="phone" type="tel" required placeholder="+380 XX XXX XX XX" inputmode="tel" maxlength="20" autocomplete="tel" />
+    <p class="form-error" data-error-for="phone" aria-live="polite"></p>
+  </div>
+
+  <div class="form-row">
+    <label for={`sort-${source}`}>Який мед хочете (необов'язково)</label>
+    <select id={`sort-${source}`} name="sort">
+      <option value="">Не визначився</option>
+      <option value="Липовий">Липовий</option>
+      <option value="Соняшниковий">Соняшниковий</option>
+      <option value="З різнотрав'я">З різнотрав'я</option>
+      <option value="Опт">Опт</option>
+    </select>
+  </div>
+
+  <div class="form-row form-row--checkbox">
+    <label class="checkbox-label">
+      <input type="checkbox" name="consent" required />
+      <span>Я погоджуюсь на обробку моїх даних для зв'язку щодо замовлення. <a href="/polityka-konfidentsiinosti/" target="_blank" rel="noopener">Політика конфіденційності</a></span>
+    </label>
+    <p class="form-error" data-error-for="consent" aria-live="polite"></p>
+  </div>
+
+  <button type="submit" class="btn btn-cta form-submit" data-submit>Отримати консультацію</button>
+  <p class="form-status" data-status aria-live="polite"></p>
+</form>
+
+<style>
+  .lead-form { display: grid; gap: 1rem; }
+  .form-row { display: grid; gap: .35rem; }
+  .form-row label { font-weight: 600; font-size: .95rem; }
+  .form-row input, .form-row select { min-height: 44px; padding: .6rem .8rem; border: 1px solid var(--color-border); border-radius: var(--radius-btn); font-family: inherit; font-size: 1rem; }
+  .form-row input:focus, .form-row select:focus { outline: 3px solid var(--color-accent); outline-offset: 1px; border-color: var(--color-brand); }
+  .form-error { color: var(--color-danger); font-size: .85rem; min-height: 1.1em; }
+  .form-row--checkbox { gap: .35rem; }
+  .checkbox-label { display: flex; gap: .5rem; align-items: flex-start; font-size: .9rem; }
+  .checkbox-label input { margin-top: .25rem; min-width: 18px; min-height: 18px; }
+  .form-submit { width: 100%; }
+  .form-submit[disabled] { opacity: .6; cursor: not-allowed; }
+  .form-status { font-weight: 600; font-size: .95rem; min-height: 1.3em; }
+  .form-status.is-success { color: var(--color-success); }
+  .form-status.is-error { color: var(--color-danger); }
+  .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+</style>
+
+<script is:inline define:vars={{ MOCK_MODE }}>
+  (function () {
+    var forms = document.querySelectorAll('[data-lead-form]');
+    forms.forEach(function (form) {
+      var pageUrlInput = form.querySelector('input[name="page_url"]');
+      if (pageUrlInput) pageUrlInput.value = window.location.href;
+      var status = form.querySelector('[data-status]');
+      var submitBtn = form.querySelector('[data-submit]');
+
+      function setError(field, msg) {
+        var el = form.querySelector('[data-error-for="' + field + '"]');
+        if (el) el.textContent = msg;
+      }
+      function clearErrors() {
+        form.querySelectorAll('.form-error').forEach(function (e) { e.textContent = ''; });
+      }
+
+      var phoneInput = form.querySelector('input[name="phone"]');
+      if (phoneInput) {
+        phoneInput.addEventListener('input', function () {
+          var digits = this.value.replace(/\D/g, '');
+          if (!digits) { this.value = ''; return; }
+          if (digits.startsWith('380')) digits = digits.slice(3);
+          if (digits.startsWith('0')) digits = digits.slice(1);
+          digits = digits.slice(0, 9);
+          this.value = '+380' + digits;
+        });
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        clearErrors();
+        if (status) { status.textContent = ''; status.className = 'form-status'; }
+
+        var name = (form.querySelector('input[name="name"]').value || '').trim();
+        var phone = (form.querySelector('input[name="phone"]').value || '').trim();
+        var sort = form.querySelector('select[name="sort"]').value;
+        var consent = form.querySelector('input[name="consent"]').checked;
+        var hp = form.querySelector('input[name="company"]').value;
+        var sourceVal = form.querySelector('input[name="source"]').value;
+        var productVal = form.querySelector('input[name="product"]').value;
+
+        var ok = true;
+        if (!name || name.length < 2) { setError('name', 'Вкажіть ім\'я (мінімум 2 символи).'); ok = false; }
+        if (!/^\+380\d{9}$/.test(phone)) { setError('phone', 'Телефон у форматі +380XXXXXXXXX.'); ok = false; }
+        if (!consent) { setError('consent', 'Потрібна згода на обробку даних.'); ok = false; }
+        if (!ok) return;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Відправляємо…';
+
+        var payload = {
+          name: name,
+          phone: phone,
+          sort: sort,
+          source: sourceVal,
+          product: productVal,
+          page_url: form.querySelector('input[name="page_url"]').value,
+          company: hp,
+        };
+
+        function onSuccess() {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Отримати консультацію';
+          if (status) {
+            status.textContent = 'Дякуємо! Ми отримали вашу заявку й зв\'яжемося з вами.';
+            status.classList.add('is-success');
+          }
+          form.reset();
+          var pu = form.querySelector('input[name="page_url"]');
+          if (pu) pu.value = window.location.href;
+        }
+        function onError(msg) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Отримати консультацію';
+          if (status) {
+            status.textContent = msg || 'Не вдалося відправити. Зателефонуйте нам: +38 (099) 701-12-56.';
+            status.classList.add('is-error');
+          }
+        }
+
+        if (MOCK_MODE) {
+          setTimeout(onSuccess, 600);
+          return;
+        }
+
+        fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+        .then(async function (r) { const d = await r.json(); return { ok: r.ok, data: d }; })
+        .then(function (res) {
+          if (res.ok && res.data && res.data.ok) onSuccess();
+          else onError(res.data && res.data.error ? res.data.error : '');
+        })
+        .catch(function () { onError(''); });
+      });
+    });
+  })();
+</script>

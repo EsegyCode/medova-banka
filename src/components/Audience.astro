@@ -1,0 +1,38 @@
+---
+---
+<section class="audience section-alt">
+  <div class="container">
+    <h2 class="section-title">Кому підійде наш мед</h2>
+    <div class="audience-grid">
+      <article class="card audience-card">
+        <h3>Активним людям і спортсменам</h3>
+        <p>натуральна солодка добавка в раціон замість цукру.</p>
+      </article>
+      <article class="card audience-card">
+        <h3>Людям старшого віку</h3>
+        <p>натуральний мед із власної пасіки до чаю й щоденного столу.</p>
+      </article>
+      <article class="card audience-card">
+        <h3>Дітям і дорослим</h3>
+        <p>смачна натуральна альтернатива цукру. Дітям до 1 року мед не давати; за алергії порадьтеся з лікарем.</p>
+      </article>
+      <article class="card audience-card">
+        <h3>Кухарям і кондитерам</h3>
+        <p>для випічки, десертів, соусів і начинок.</p>
+      </article>
+      <article class="card audience-card">
+        <h3>Оптовим покупцям</h3>
+        <p>від 20 л ціни нижчі на 20%.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .audience-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .audience-grid { grid-template-columns: repeat(3, 1fr); } }
+  .audience-card { padding: 1.25rem; }
+  .audience-card h3 { color: var(--color-brand); margin-bottom: .5rem; font-size: 1.05rem; }
+  .audience-card p { color: var(--color-text-muted); font-size: .95rem; margin: 0; }
+  .audience-card h3::first-letter { text-transform: uppercase; }
+</style>

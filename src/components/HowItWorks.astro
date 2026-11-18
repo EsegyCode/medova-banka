@@ -1,0 +1,36 @@
+---
+---
+<section class="how section">
+  <div class="container">
+    <h2 class="section-title">Як замовити мед</h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <span class="how-step__num">1</span>
+        <h3>Оберіть мед</h3>
+        <p>липовий, соняшниковий або з різнотрав'я, 1 л чи 3 л.</p>
+      </div>
+      <div class="how-step">
+        <span class="how-step__num">2</span>
+        <h3>Залиште заявку</h3>
+        <p>заповніть форму або зателефонуйте, ми допоможемо з вибором.</p>
+      </div>
+      <div class="how-step">
+        <span class="how-step__num">3</span>
+        <h3>Отримайте замовлення</h3>
+        <p>Новою поштою, Укрпоштою або самовивозом у Сумах.</p>
+      </div>
+    </div>
+    <p class="how-phone"><a href="tel:+380997011256">+38 (099) 701-12-56</a></p>
+  </div>
+</section>
+
+<style>
+  .how-steps { display: grid; gap: 1.5rem; grid-template-columns: 1fr; margin: 2rem 0; }
+  @media (min-width: 900px) { .how-steps { grid-template-columns: repeat(3, 1fr); } }
+  .how-step { text-align: center; }
+  .how-step__num { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; background: var(--color-cta); color: var(--color-text); font-weight: 700; font-size: 1.2rem; margin-bottom: .75rem; }
+  .how-step h3 { color: var(--color-brand); margin-bottom: .25rem; }
+  .how-step p { color: var(--color-text-muted); font-size: .95rem; margin: 0; }
+  .how-phone { text-align: center; font-size: 1.5rem; font-weight: 700; margin-top: 1rem; }
+  .how-phone a { color: var(--color-brand); }
+</style>

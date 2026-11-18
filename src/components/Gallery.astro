@@ -1,0 +1,27 @@
+---
+import { galleryItems } from '../data/gallery.ts';
+---
+<section id="gallery" class="section-alt">
+  <div class="container">
+    <h2 class="section-title">Пасіка, мед і наші будні</h2>
+    <div class="gallery-grid">
+      {galleryItems.map((g) => (
+        <figure class="gallery-item">
+          {g.src ? (
+            <img src={g.src} alt={g.alt} width="400" height="300" loading="lazy" />
+          ) : (
+            <div class="placeholder gallery-placeholder">TODO: замінити реальним фото</div>
+          )}
+          <figcaption class="visually-hidden">{g.alt}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery-grid { display: grid; gap: 1rem; grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 900px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+  .gallery-item { margin: 0; }
+  .gallery-placeholder { min-height: 160px; border-radius: var(--radius-card); background: var(--color-bg); border: 1px dashed var(--color-border); display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); font-size: .85rem; }
+</style>

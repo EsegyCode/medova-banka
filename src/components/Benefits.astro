@@ -1,0 +1,38 @@
+---
+---
+<section class="benefits" aria-label="Переваги">
+  <div class="container">
+    <div class="benefits__grid">
+      <article class="benefit">
+        <div class="benefit__icon" aria-hidden="true">🐝</div>
+        <h3>Власна пасіка</h3>
+        <p>Мед лише нашого виробництва, невеликими партіями.</p>
+      </article>
+      <article class="benefit">
+        <div class="benefit__icon" aria-hidden="true">🌿</div>
+        <h3>Свіжий мед 2026</h3>
+        <p>Продаємо тільки мед цьогорічного врожаю.</p>
+      </article>
+      <article class="benefit">
+        <div class="benefit__icon" aria-hidden="true">✨</div>
+        <h3>Чистий мед</h3>
+        <p>Без цукру, добавок і препаратів.</p>
+      </article>
+      <article class="benefit">
+        <div class="benefit__icon" aria-hidden="true">📦</div>
+        <h3>Доставка по Україні</h3>
+        <p>Нова пошта й Укрпошта, самовивіз у Сумах безкоштовно.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .benefits { padding-block: 2rem; background: var(--color-bg-alt); border-block: 1px solid var(--color-border); }
+  .benefits__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  @media (min-width: 900px) { .benefits__grid { grid-template-columns: repeat(4, 1fr); } }
+  .benefit { text-align: center; }
+  .benefit__icon { font-size: 2rem; margin-bottom: .5rem; }
+  .benefit h3 { font-size: 1.05rem; color: var(--color-brand); margin-bottom: .25rem; }
+  .benefit p { color: var(--color-text-muted); font-size: .9rem; margin: 0; }
+</style>
