@@ -1,14 +1,10 @@
-export interface GalleryItem {
-  src: string;
-  alt: string;
-}
+﻿export interface GalleryItem { src: string; alt: string; }
 
-// TODO: власник замінює порожні шляхи реальними фото пасіки й меду
 export const galleryItems: GalleryItem[] = [
-  { src: '', alt: 'TODO: замінити реальним фото пасіки' },
-  { src: '', alt: 'TODO: замінити реальним фото пасіки' },
-  { src: '', alt: 'TODO: замінити реальним фото вуликів' },
-  { src: '', alt: 'TODO: замінити реальним фото меду' },
-  { src: '', alt: 'TODO: замінити реальним фото меду' },
-  { src: '', alt: 'TODO: замінити реальним фото пакування' },
+  { src: '/photo-6.webp', alt: 'Бджоли на стінці вулика' },
+  { src: '/photo-7.webp', alt: 'Мед проціджується у відро' },
+  { src: '/photo-8.webp', alt: 'Бджоли біля льотка вулика' },
+  { src: '/photo-9.webp', alt: 'Відро свіжого меду' },
+  { src: '/photo-10.webp', alt: 'Бджоляр серед вуликів' },
+  { src: '/photo-11.webp', alt: 'Вулики біля пшеничного поля' },
 ];

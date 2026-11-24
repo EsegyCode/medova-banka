@@ -11,7 +11,7 @@ import LeadForm from '../components/LeadForm.astro';
 <BaseLayout title="Купити мед з власної пасіки — Медова Банка, Сумщина" description="Свіжий мед 2026 з власної пасіки на Сумщині: липовий, соняшниковий, різнотрав'я. Без цукру й добавок. Замовити мед з доставкою, опт від 20 л.">
   <Hero />
   <Benefits />
-  <section id="order" class="section">
+  <section id="order" class="section lead-section">
     <div class="container">
       <h2 class="section-title">Хочете замовити мед?</h2>
       <p class="section-subtitle">Ми допоможемо з вибором і підкажемо — заповніть форму й отримайте консультацію експерта.</p>
@@ -28,4 +28,41 @@ import LeadForm from '../components/LeadForm.astro';
 
 <style is:global>
   .lead-wrap { max-width: 560px; margin: 0 auto; }
+  .lead-section { background: var(--color-brand); color: var(--color-white-text); }
+  .lead-section .section-title { color: var(--color-white-text); }
+  .lead-section .section-subtitle { color: rgba(255,255,255,0.85); }
+  .lead-section .lead-form { gap: 1rem; }
+  .lead-section .lead-form .form-row label { color: var(--color-white-text); }
+  .lead-section .lead-form .form-row input,
+  .lead-section .lead-form .form-row select {
+    background: #ffffff;
+    color: var(--color-brand-dark);
+    border: 1px solid transparent;
+  }
+  .lead-section .lead-form .form-row input::placeholder { color: rgba(79, 44, 18, 0.6); }
+  .lead-section .lead-form .form-row input:focus,
+  .lead-section .lead-form .form-row select:focus {
+    outline: 3px solid #FFE08A;
+    outline-offset: 1px;
+    border-color: var(--color-accent);
+  }
+  .lead-section .lead-form .form-submit {
+    background: #FFE08A;
+    color: var(--color-brand-dark);
+    border-color: #FFE08A;
+  }
+  .lead-section .lead-form .form-submit:hover {
+    background: #FFD54F;
+    border-color: #FFD54F;
+  }
+  .lead-section .lead-form .form-submit:focus-visible {
+    outline: 3px solid #FFE08A;
+    outline-offset: 3px;
+  }
+  .lead-section .lead-form .checkbox-label { color: var(--color-white-text); }
+  .lead-section .lead-form .checkbox-label input { border: 1px solid rgba(255,255,255,0.8); background: #fff; accent-color: #FFE08A; }
+  .lead-section .lead-form .checkbox-label a { color: #FFE08A; text-decoration: underline; }
+  .lead-section .lead-form .form-error { color: #FFB4AB; }
+  .lead-section .lead-form .form-status.is-success { color: #B9F6CA; }
+  .lead-section .lead-form .form-status.is-error { color: #FF8A80; }
 </style>
