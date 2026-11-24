@@ -2,16 +2,16 @@
 ---
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="site-header__logo" href="/">Медова Банка</a>
+    <a class="site-header__logo" href="/">
+      <img src="/logo-medova-banka.jpg" alt="Логотип Медова Банка" width="44" height="44" loading="eager" />
+      <span>Медова Банка</span>
+    </a>
     <nav class="site-nav" aria-label="Головне меню">
       <button class="site-nav__burger" type="button" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="site-nav-menu">☰</button>
       <ul class="site-nav__menu" id="site-nav-menu">
         <li><a href="/#products">Продукція</a></li>
-        <li><a href="/#prices">Ціни</a></li>
-        <li><a href="/dostavka-ta-oplata/">Доставка і оплата</a></li>
         <li><a href="/pro-pasiku/">Про пасіку</a></li>
         <li><a href="/pytannya-vidpovidi/">Питання та відповіді</a></li>
-        <li><a href="/kontakty/">Контакти</a></li>
       </ul>
     </nav>
     <div class="site-header__right">
@@ -23,11 +23,12 @@
 
 <style>
   .site-header { background: var(--color-surface); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; z-index: 100; }
-  .site-header__inner { display: flex; align-items: center; gap: 1rem; padding-block: .75rem; flex-wrap: wrap; }
-  .site-header__logo { font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-brand); font-weight: 700; white-space: nowrap; }
-  .site-nav { flex: 1; }
-  .site-nav__burger { display: none; font-size: 1.5rem; background: none; border: none; cursor: pointer; min-width: 44px; min-height: 44px; }
-  .site-nav__menu { list-style: none; display: flex; gap: .25rem .75rem; flex-wrap: wrap; }
+.site-header__inner { display: flex; align-items: center; gap: 1rem; padding-block: .75rem; }
+.site-header__logo { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-brand); font-weight: 700; white-space: nowrap; }
+.site-header__logo img { height: 44px; width: auto; object-fit: contain; }
+.site-nav { flex: 1; }
+.site-nav__burger { display: none; font-size: 1.5rem; background: none; border: none; cursor: pointer; min-width: 44px; min-height: 44px; }
+.site-nav__menu { list-style: none; display: flex; gap: .25rem .75rem; flex-wrap: nowrap; }
   .site-nav__menu a { padding: .4rem .6rem; min-height: 44px; display: inline-flex; align-items: center; border-radius: var(--radius-btn); }
   .site-nav__menu a:hover { background: var(--color-bg-alt); }
   .site-header__right { display: flex; align-items: center; gap: .75rem; margin-left: auto; }

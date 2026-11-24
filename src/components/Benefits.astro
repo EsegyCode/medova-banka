@@ -4,22 +4,30 @@
   <div class="container">
     <div class="benefits__grid">
       <article class="benefit">
-        <div class="benefit__icon" aria-hidden="true">🐝</div>
+        <div class="benefit__icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="#F28C00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6 L38 14 V34 L24 42 L10 34 V14 Z" /><path d="M10 22 h28" /><path d="M10 30 h28" /></svg>
+        </div>
         <h3>Власна пасіка</h3>
         <p>Мед лише нашого виробництва, невеликими партіями.</p>
       </article>
       <article class="benefit">
-        <div class="benefit__icon" aria-hidden="true">🌿</div>
+        <div class="benefit__icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="#6B3F1D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 40 C20 28 28 20 40 16" /><path d="M12 40 C22 30 30 22 40 16" /><path d="M16 34 L30 20" /></svg>
+        </div>
         <h3>Свіжий мед 2026</h3>
         <p>Продаємо тільки мед цьогорічного врожаю.</p>
       </article>
       <article class="benefit">
-        <div class="benefit__icon" aria-hidden="true">✨</div>
+        <div class="benefit__icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="#F28C00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 8 C18 18 12 24 12 32 a12 12 0 0 0 24 0 C36 24 30 18 24 8 z" /><path d="M20 34 h8" /></svg>
+        </div>
         <h3>Чистий мед</h3>
-        <p>Без цукру, добавок і препаратів.</p>
+        <p>Без цукру та добавок.</p>
       </article>
       <article class="benefit">
-        <div class="benefit__icon" aria-hidden="true">📦</div>
+        <div class="benefit__icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="#6B3F1D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="18" width="22" height="14" rx="2" /><path d="M28 22 h8 l4 6 v4 h-4" /><circle cx="14" cy="36" r="3" /><circle cx="34" cy="36" r="3" /></svg>
+        </div>
         <h3>Доставка по Україні</h3>
         <p>Нова пошта й Укрпошта, самовивіз у Сумах безкоштовно.</p>
       </article>
@@ -32,7 +40,7 @@
   .benefits__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
   @media (min-width: 900px) { .benefits__grid { grid-template-columns: repeat(4, 1fr); } }
   .benefit { text-align: center; }
-  .benefit__icon { font-size: 2rem; margin-bottom: .5rem; }
+  .benefit__icon { margin-bottom: .5rem; display: flex; justify-content: center; }
   .benefit h3 { font-size: 1.05rem; color: var(--color-brand); margin-bottom: .25rem; }
   .benefit p { color: var(--color-text-muted); font-size: .9rem; margin: 0; }
 </style>

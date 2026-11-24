@@ -1,12 +1,22 @@
 ---
 import { faqItems } from '../data/faq.ts';
-interface Props { limit?: number; showLink?: boolean; }
-const { limit, showLink = true } = Astro.props;
+interface Props { limit?: number; showLink?: boolean; schema?: boolean; }
+const { limit, showLink = true, schema = true } = Astro.props;
 const items = typeof limit === 'number' ? faqItems.slice(0, limit) : faqItems;
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((it) => ({
+    '@type': 'Question',
+    name: it.q,
+    acceptedAnswer: { '@type': 'Answer', text: it.a },
+  })),
+};
 ---
 <section id="faq" class="section-alt" aria-labelledby="faq-title">
   <div class="container">
     <h2 id="faq-title" class="section-title">Питання та відповіді</h2>
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
     <div class="faq-list">
       {items.map((it) => (
         <details class="faq-item">

@@ -6,9 +6,12 @@ import { products } from '../data/products.ts';
     <h2 class="section-title">Наш мед</h2>
     <p class="section-subtitle">Три сорти свіжого меду 2026 року у банках 1 л і відрах 3 л</p>
     <div class="product-grid">
-      {products.map((p) => (
+      {products.map((p, i) => {
+        const photos = ['/photo-2.webp', '/photo-3.webp', '/photo-4.webp'];
+        const alts = [p.name + ' — натуральний мед Медова Банка', p.name + ' — натуральний мед Медова Банка', p.name + ' — натуральний мед Медова Банка'];
+        return (
         <article class="card product-card">
-          <div class="product-card__image placeholder" aria-hidden="true">TODO: фото меду</div>
+          <img class="product-card__image" src={photos[i]} alt={alts[i]} width="400" height="300" loading="lazy" />
           <div class="product-card__body">
             <h3>{p.name}</h3>
             <p>{p.shortDesc}</p>
@@ -19,7 +22,8 @@ import { products } from '../data/products.ts';
             <button type="button" class="btn btn-cta" data-open-modal data-product={p.id}>Замовити</button>
           </div>
         </article>
-      ))}
+        );
+      })}
     </div>
     <p class="product-note">Фасування: скло або харчові пластикові відра — за бажанням клієнта.</p>
   </div>
@@ -28,7 +32,7 @@ import { products } from '../data/products.ts';
 <style>
   .product-grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
   @media (min-width: 900px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
-  .product-card__image { min-height: 180px; display: flex; align-items: center; justify-content: center; background: var(--color-bg-alt); color: var(--color-text-muted); font-size: .9rem; }
+  .product-card__image { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center; border-radius: var(--radius-card) var(--radius-card) 0 0; display: block; }
   .product-card__body { padding: 1.25rem; display: grid; gap: .75rem; }
   .product-card__body h3 { color: var(--color-brand); }
   .product-card__prices { display: flex; gap: 1.5rem; }

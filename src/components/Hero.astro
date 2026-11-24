@@ -3,22 +3,16 @@
 <section class="hero">
   <div class="container hero__inner">
     <div>
-      <h1>Медова Банка — купити натуральний мед з власної пасіки на Сумщині</h1>
-      <p class="hero__sub">Свіжий мед урожаю 2026 року: липовий, соняшниковий і з різнотрав'я. Власна пасіка, невеликі партії, чистий мед без цукру, добавок і препаратів. Замовити мед просто: залиште заявку, і ми допоможемо з вибором. Доставка Новою поштою та Укрпоштою по всій Україні, безкоштовний самовивіз у Сумах.</p>
+      <h1>Медова Банка — купити натуральний мед з власної пасіки з доставкою з Сумщини</h1>
+      <p class="hero__sub">Купити свіжий мед урожаю 2026 року: липовий, соняшниковий і з різнотрав'я. Власна пасіка, невеликі партії, якісний мед без цукру та добавок. Свіжий мед збираємо щороку й продаємо лише власного виробництва. Замовити мед просто: залиште заявку, і ми допоможемо з вибором. Доставка Новою поштою та Укрпоштою по всій Україні, безкоштовний самовивіз у Сумах.</p>
       <div class="hero__chips">
-        <span class="chip">Свіжий мед 2026</span>
         <span class="chip">Липовий мед</span>
         <span class="chip">Соняшниковий мед</span>
         <span class="chip">Мед з різнотрав'я</span>
       </div>
-      <div class="hero__actions">
-        <a class="btn btn-cta" href="#order">Замовити мед</a>
-        <a class="btn btn-outline" href="tel:+380997011256">Зателефонувати</a>
-      </div>
     </div>
-    <div class="hero__image" aria-hidden="true">
-      <!-- TODO: замінити фото пасіки -->
-      <div class="placeholder hero__placeholder">Фото пасіки (TODO)</div>
+    <div class="hero__image">
+      <img src="/photo-1.webp" alt="Мед з власної пасіки родини Кривцових, Сумщина" width="600" height="420" loading="eager" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-card);" />
     </div>
   </div>
 </section>
@@ -30,7 +24,7 @@
   .hero__chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.25rem 0; }
   .chip { background: var(--color-bg-alt); border: 1px solid var(--color-border); padding: .35rem .85rem; border-radius: 999px; font-size: .9rem; }
   .hero__actions { display: flex; gap: .75rem; flex-wrap: wrap; }
-  .hero__placeholder { min-height: 280px; border-radius: var(--radius-card); display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--color-bg-alt), var(--color-accent)); color: var(--color-brand); font-weight: 600; }
+  .hero__image { min-height: 280px; border-radius: var(--radius-card); overflow: hidden; background: var(--color-bg-alt); }
   .placeholder { color: var(--color-text-muted); }
   @media (min-width: 900px) { .hero__inner { grid-template-columns: 1.1fr 1fr; } }
 </style>
