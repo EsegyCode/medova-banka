@@ -7,6 +7,9 @@ import AboutApiary from '../components/AboutApiary.astro';
 import Gallery from '../components/Gallery.astro';
 import FAQ from '../components/FAQ.astro';
 import LeadForm from '../components/LeadForm.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { products } from '../data/products.ts';
+import { site } from '../data/site.ts';
 ---
 <BaseLayout title="Купити мед з власної пасіки — Медова Банка, Сумщина" description="Свіжий мед 2026 з власної пасіки на Сумщині: липовий, соняшниковий, різнотрав'я. Без цукру й добавок. Замовити мед з доставкою, опт від 20 л.">
   <Hero />
@@ -23,6 +26,25 @@ import LeadForm from '../components/LeadForm.astro';
   <ProductCards />
   <AboutApiary />
   <Gallery />
+  <JsonLd data={{
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: products.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Product',
+        name: p.name,
+        description: p.shortDesc,
+        image: `${site.siteUrl.endsWith('/') ? site.siteUrl.slice(0, -1) : site.siteUrl}${['/photo-2.webp', '/photo-3.webp', '/photo-4.webp'][i]}`,
+        brand: { '@type': 'Brand', name: site.siteName },
+        offers: [
+          { '@type': 'Offer', name: `${p.name}, 1 л`, price: p.price1L, priceCurrency: 'UAH', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.siteName } },
+          { '@type': 'Offer', name: `${p.name}, 3 л`, price: p.price3L, priceCurrency: 'UAH', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: site.siteName } },
+        ],
+      },
+    })),
+  }} />
   <FAQ />
 </BaseLayout>
 

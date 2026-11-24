@@ -1,0 +1,76 @@
+---
+---
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Налаштування cookie" hidden>
+  <div class="cookie-banner__inner">
+    <p>Ми використовуємо cookie для базової роботи сайту та зберігання вашого вибору. Інші сервіси завантажуються лише за вашою згодою. Детальніше: <a href="/cookies/">Політика використання cookie</a> і <a href="/privacy/">Політика конфіденційності</a>.</p>
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn btn-cta" data-cookie-accept>Прийняти всі</button>
+      <button type="button" class="btn btn-outline" data-cookie-necessary>Лише необхідні</button>
+    </div>
+  </div>
+</div>
+<script is:inline>
+  (function () {
+    var VERSION = '1';
+    var STORAGE_KEY = 'mb_cookie_consent';
+    var banner = document.getElementById('cookie-banner');
+    function readConsent() {
+      try {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return null;
+        var parsed = JSON.parse(raw);
+        if (parsed && parsed.version === VERSION) return parsed;
+      } catch (e) {}
+      return null;
+    }
+    function saveConsent(choice) {
+      var value = { version: VERSION, choice: choice, timestamp: new Date().toISOString() };
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(value)); } catch (e) {}
+      try {
+        document.cookie = STORAGE_KEY + '=' + encodeURIComponent(JSON.stringify(value)) + '; max-age=' + (365*24*60*60) + '; path=/; SameSite=Lax';
+      } catch (e) {}
+      // non-essential scripts gate
+      window.dispatchEvent(new CustomEvent('cookieconsent', { detail: { choice: choice } }));
+    }
+    function showBanner() {
+      if (banner) banner.hidden = false;
+    }
+    function hideBanner() {
+      if (banner) banner.hidden = true;
+    }
+    window.__openCookieBanner = showBanner;
+    var consent = readConsent();
+    if (!consent) showBanner();
+    else {
+      // already consented; ensure analytics gate fires
+      window.dispatchEvent(new CustomEvent('cookieconsent', { detail: { choice: consent.choice } }));
+    }
+    if (banner) {
+      banner.querySelector('[data-cookie-accept]').addEventListener('click', function () { saveConsent('all'); hideBanner(); });
+      banner.querySelector('[data-cookie-necessary]').addEventListener('click', function () { saveConsent('necessary'); hideBanner(); });
+    }
+  })();
+</script>
+<style>
+  .cookie-banner {
+    position: fixed;
+    left: 1rem;
+    right: 8rem;
+    bottom: 1rem;
+    z-index: 999;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card, 12px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    padding: 1rem 1.25rem;
+  }
+  .cookie-banner[hidden] { display: none; }
+  .cookie-banner__inner { display: grid; gap: .75rem; }
+  .cookie-banner__inner p { color: var(--color-text-muted); font-size: .95rem; margin: 0; }
+  .cookie-banner__inner a { color: var(--color-brand); font-weight: 600; }
+  .cookie-banner__actions { display: flex; gap: .5rem; flex-wrap: wrap; }
+  .cookie-banner button { min-height: 40px; }
+  @media (max-width: 899px) {
+    .cookie-banner { right: 1rem; }
+  }
+</style>

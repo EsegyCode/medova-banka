@@ -1,4 +1,5 @@
 ---
+import { site } from '../data/site.ts';
 ---
 <footer class="site-footer section-dark">
   <div class="container">
@@ -28,10 +29,12 @@
       <div>
         <h4>Юридичне</h4>
         <ul>
-          <li><a href="/oferta/">Договір публічної оферти</a></li>
-          <li><a href="/polityka-konfidentsiinosti/">Політика конфіденційності</a></li>
+          <li><a href="/terms/">Договір публічної оферти</a></li>
+          <li><a href="/privacy/">Політика конфіденційності</a></li>
+          <li><a href="/cookies/">Політика використання cookie</a></li>
         </ul>
-        <p class="footer-seller">Продавець: <em>TODO: назва продавця (власник підтверджує)</em></p>
+        <p class="footer-cookie-settings"><a href="#" id="footer-cookie-settings">Налаштування cookie</a></p>
+        <p class="footer-seller">Продавець: <em>{site.seller.legalName}</em></p>
       </div>
     </div>
     <div class="footer-copy">
@@ -51,4 +54,12 @@
   @media (min-width: 900px) { .footer-grid { grid-template-columns: repeat(4, 1fr); } }
   .footer-seller { margin-top: 1rem; font-size: .85rem; color: rgba(255,255,255,0.6); }
   .footer-copy { border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1rem; font-size: .85rem; color: rgba(255,255,255,0.6); }
+  .footer-cookie-settings { margin-top: .5rem; font-size: .85rem; }
+</style>
+<script is:inline>
+  (function () {
+    var link = document.getElementById('footer-cookie-settings');
+    if (link) link.addEventListener('click', function (e) { e.preventDefault(); if (typeof window.__openCookieBanner === 'function') window.__openCookieBanner(); });
+  })();
+</script>
 </style>

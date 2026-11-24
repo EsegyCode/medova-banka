@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { site } from '../data/site.ts';
+if (import.meta.env.DEV) console.warn('TODO: seller legal data (site.ts) is not filled yet.');
+const isDev = import.meta.env.DEV;
+const base = site.siteUrl.replace(/\/$/, '');
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Договір публічної оферти',
+    url: `${base}/terms/`,
+    dateModified: site.lastUpdated,
+    inLanguage: 'uk',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Головна', item: `${base}/` },
+      { '@type': 'ListItem', position: 2, name: 'Договір публічної оферти', item: `${base}/terms/` },
+    ],
+  },
+];
+---
+<BaseLayout title="Договір публічної оферти — Медова Банка" description="Договір публічної оферти інтернет-магазину Медова Банка: умови купівлі меду, доставки та повернення.">
+  <JsonLd data={jsonLd} />
+  <section class="section">
+    <div class="container content-page">
+      <h1>Договір публічної оферти</h1>
+      <p class="legal-updated">Останнє оновлення: {site.lastUpdated}</p>
+      {isDev && <p class="legal-todo"><strong>DEV:</strong> заповніть дані продавця у src/data/site.ts.</p>}
+      <nav class="legal-toc" aria-label="Зміст">
+        <ul>
+          <li><a href="#defs">1. Терміни</a></li>
+          <li><a href="#subject">2. Предмет</a></li>
+          <li><a href="#order">3. Оформлення замовлення</a></li>
+          <li><a href="#price">4. Ціна та оплата</a></li>
+          <li><a href="#delivery">5. Доставка</a></li>
+          <li><a href="#quality">6. Якість і зберігання</a></li>
+          <li><a href="#returns">7. Повернення та обмін</a></li>
+          <li><a href="#liability">8. Відповідальність</a></li>
+          <li><a href="#force">9. Форс-мажор</a></li>
+          <li><a href="#personal">10. Персональні дані</a></li>
+          <li><a href="#disputes">11. Спори</a></li>
+          <li><a href="#seller">12. Реквізити продавця</a></li>
+        </ul>
+      </nav>
+      <p>Цей договір є публічною офертою відповідно до ст. 633, 641 Цивільного кодексу України та Законів «Про захист прав споживачів» і «Про електронну комерцію». Акцептом оферти є оформлення замовлення на сайті або за телефоном.</p>
+      <h2 id="defs">1. Терміни</h2>
+      <p>Продавець — {site.seller.legalName} (TODO). Покупець — фізична особа, яка оформлює замовлення. Товар — натуральний мед власного виробництва. Сайт — інтернет-магазин «Медова Банка».</p>
+      <h2 id="subject">2. Предмет</h2>
+      <p>Продавець продає, а Покупець купує мед 2026 року врожаю трьох сортів: липовий, соняшниковий, з різнотрав'я. Фасування: 1 л (банка) і 3 л (відро). Пакування на вибір клієнта: скло або харчовий пластик.</p>
+      <h2 id="order">3. Оформлення замовлення</h2>
+      <p>Замовлення оформлюється через форму на сайті, за телефоном {site.phone} або в Telegram-боті {site.telegramBot}. Договір вважається укладеним у момент підтвердження замовлення менеджером. Уточнення деталей — за домовленістю.</p>
+      <h2 id="price">4. Ціни та оплата</h2>
+      <p>Ціни вказані на сторінці «Ціни» в гривнях (UAH) для 1 л і 3 л окремо і можуть змінюватися. Застосовується ціна на момент оформлення замовлення. Оплата — за передплатою; можлива часткова оплата (TODO: підтвердити точні умови оплати і реквізити). Реквізити уточнюємо при замовленні.</p>
+      <h2 id="delivery">5. Доставка</h2>
+      <p>Доставка Новою поштою й Укрпоштою по Україні, вартість за тарифами перевізника сплачує Покупець. Самовивіз у м. {site.addressLocality} безкоштовний (TODO: номер будинку). Строки — кілька днів; уточнюються при замовленні. Детальніше на сторінці <a href="/dostavka-ta-oplata/">Доставка і оплата</a>.</p>
+      <h2 id="quality">6. Якість і зберігання</h2>
+      <p>Мед — натуральний харчовий продукт. Кристалізація (густішання) меду є природною властивістю і не є недоліком. Зберігати в щільно закритій тарі в темному місці за температури до +25 °C. Мед дітям до 1 року не давати.</p>
+      <h2 id="returns">7. Повернення та обмін</h2>
+      <p>Відповідно до законодавства України, продовольчі товари належної якості поверненню та обміну не підлягають. У разі неналежної якості — повідомте нас протягом розумного строку з приймання (TODO: підтвердити строк) з фотофіксацією проблеми. Вимоги щодо упакування, пошкодженого при доставці, вирішуються з перевізником; ми надійно пакуємо мед.</p>
+      <h2 id="liability">8. Відповідальність</h2>
+      <p>Продавець не несе відповідальності за затримки, спричинені перевізником або форс-мажором. Відповідальність обмежується вартістю замовлення.</p>
+      <h2 id="force">9. Форс-мажор</h2>
+      <p>Сторони звільняються від відповідальності у разі форс-мажорних обставин (стихійні лиха, військові дії, перебої в роботі перевізників тощо).</p>
+      <h2 id="personal">10. Персональні дані</h2>
+      <p>Обробка персональних даних здійснюється відповідно до <a href="/privacy/">Політики конфіденційності</a>.</p>
+      <h2 id="disputes">11. Спори та застосовне право</h2>
+      <p>Спори вирішуються шляхом переговорів; у разі незгоди — у суді за законодавством України за місцем реєстрації Продавця.</p>
+      <h2 id="seller">12. Реквізити продавця</h2>
+      <p>{site.seller.legalName} (TODO); ID {site.seller.taxId} (TODO); {site.seller.registrationStatus} (TODO); адреса: {site.seller.legalAddress} (TODO). Тел.: {site.phone}; email: {site.email}; графік: {site.workingHours}.</p>
+    </div>
+  </section>
+</BaseLayout>
+<style is:global>
+  .content-page { max-width: 760px; margin-inline: auto; }
+  .content-page h1 { color: var(--color-brand); margin-bottom: 1.5rem; }
+  .content-page h2 { color: var(--color-brand); margin: 1.5rem 0 .5rem; }
+  .content-page p, .content-page li { color: var(--color-text-muted); }
+  .legal-updated { font-size: .9rem; color: var(--color-text-muted); margin-bottom: 1.5rem; }
+  .legal-todo { background: #fff3cd; border: 1px solid #ffe08a; padding: .75rem 1rem; border-radius: var(--radius-btn); color: #6b4a00; margin-bottom: 1.5rem; }
+  .legal-toc { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-card); padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+  .legal-toc ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .25rem; }
+  .legal-toc a { color: var(--color-brand); font-size: .95rem; }
+</style>

@@ -4,13 +4,27 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import StickyCallButton from '../components/StickyCallButton.astro';
 import LeadForm from '../components/LeadForm.astro';
+import SEO from '../components/SEO.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import JsonLd from '../components/JsonLd.astro';
 
 const {
   title = 'Медова Банка — купити натуральний мед з власної пасіки на Сумщині',
   description = 'Свіжий мед 2026 з власної пасіки на Сумщині: липовий, соняшниковий, різнотрав\'я. Без цукру й добавок. Замовити мед з доставкою, опт від 20 л.',
   canonical,
   schema,
+  image,
 } = Astro.props;
+const ogImageMap = {
+  '/': '/og/og-home.png',
+  '/pro-pasiku/': '/og/og-about.png',
+  '/pytannya-vidpovidi/': '/og/og-faq.png',
+  '/privacy/': '/og/og-privacy.png',
+  '/terms/': '/og/og-terms.png',
+  '/cookies/': '/og/og-cookies.png',
+  '/dostavka-ta-oplata/': '/og/og-prices.png',
+};
+const ogImageFallback = ogImageMap[Astro.url.pathname] || '/og/og-default.png';
 const site = (Astro.site ? Astro.site.toString() : 'https://medova-banka.shop').replace(/\/$/, '');
 const pageUrl = canonical ? new URL(canonical, site + '/').toString() : new URL(Astro.url.pathname, site + '/').toString();
 const ogImage = `${site}/og-image.jpg`;
@@ -32,6 +46,13 @@ const localBusiness = {
   }],
 };
 const ld = schema || localBusiness;
+const webSite = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Медова Банка',
+  url: site,
+  inLanguage: 'uk',
+};
 ---
 <!doctype html>
 <html lang="uk">
@@ -40,20 +61,9 @@ const ld = schema || localBusiness;
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <title>{title}</title>
-  <meta name="description" content={description} />
-  <link rel="canonical" href={pageUrl} />
-  <meta property="og:locale" content="uk_UA" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  <meta property="og:url" content={pageUrl} />
-  <meta property="og:image" content={ogImage} />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={ogImage} />
+  <SEO title={title} description={description} canonical={canonical} image={image || ogImageFallback} />
   <slot name="head" />
+  <JsonLd data={webSite} />
   <script type="application/ld+json" set:html={JSON.stringify(ld)} />
 </head>
 <body>
@@ -64,6 +74,7 @@ const ld = schema || localBusiness;
   </main>
   <Footer />
   <StickyCallButton />
+  <CookieBanner />
   <div class="lead-modal" id="lead-modal" hidden aria-hidden="true">
     <div class="lead-modal__backdrop" data-close-modal></div>
     <div class="lead-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
