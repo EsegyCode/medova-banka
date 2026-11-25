@@ -6,19 +6,30 @@
       <img src="/logo-medova-banka.jpg" alt="Логотип Медова Банка" width="44" height="44" loading="eager" />
       <span class="site-header__logo-text">Медова Банка</span>
     </a>
-    <nav class="site-nav" aria-label="Головне меню">
-      <button class="site-nav__burger" type="button" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="site-nav-menu">☰</button>
-      <ul class="site-nav__menu" id="site-nav-menu">
+    <nav class="site-nav site-nav--desktop" aria-label="Головне меню">
+      <ul class="site-nav__menu site-nav__menu--desktop">
         <li><a href="/#products">Продукція</a></li>
         <li><a href="/pro-pasiku/">Про пасіку</a></li>
         <li><a href="/pytannya-vidpovidi/">Питання та відповіді</a></li>
-        <li class="site-nav__phone-mobile"><a href="tel:+380997011256">+38 (099) 701-12-56</a></li>
       </ul>
     </nav>
     <div class="site-header__right">
       <a class="site-header__phone" href="tel:+380997011256">+38 (099) 701-12-56</a>
       <button class="btn btn-cta btn-sm site-header__cta" type="button" data-open-modal>Замовити</button>
     </div>
+    <button class="site-nav__burger" type="button" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="site-nav-panel">
+      <span class="site-nav__bar"></span>
+      <span class="site-nav__bar"></span>
+      <span class="site-nav__bar"></span>
+    </button>
+  </div>
+  <div class="site-nav__panel" id="site-nav-panel" aria-label="Головне меню">
+    <ul class="site-nav__panel-menu">
+      <li><a href="/#products">Продукція</a></li>
+      <li><a href="/pro-pasiku/">Про пасіку</a></li>
+      <li><a href="/pytannya-vidpovidi/">Питання та відповіді</a></li>
+      <li class="site-nav__phone-item"><a href="tel:+380997011256">+38 (099) 701-12-56</a></li>
+    </ul>
   </div>
 </header>
 
@@ -28,43 +39,99 @@
   .site-header__logo { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-brand); font-weight: 700; min-width: 0; }
   .site-header__logo img { height: 44px; width: auto; flex-shrink: 0; object-fit: contain; }
   .site-header__logo-text { min-width: 0; white-space: nowrap; }
-  .site-nav { flex: 1 1 auto; min-width: 0; }
-  .site-nav__burger { display: none; font-size: 1.5rem; background: none; border: none; cursor: pointer; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
-  .site-nav__menu { list-style: none; display: flex; gap: .25rem .75rem; flex-wrap: nowrap; }
-  .site-nav__menu a { padding: .4rem .6rem; min-height: 44px; display: inline-flex; align-items: center; border-radius: var(--radius-btn); }
-  .site-nav__menu a:hover { background: var(--color-bg-alt); }
+  .site-nav--desktop { flex: 1 1 auto; min-width: 0; }
+  .site-nav__menu--desktop { list-style: none; display: flex; gap: .25rem .75rem; flex-wrap: nowrap; }
+  .site-nav__menu--desktop a { padding: .4rem .6rem; min-height: 44px; display: inline-flex; align-items: center; border-radius: var(--radius-btn); }
+  .site-nav__menu--desktop a:hover { background: var(--color-bg-alt); }
   .site-header__right { display: flex; align-items: center; gap: .75rem; flex: 0 0 auto; }
   .site-header__phone { font-weight: 600; white-space: nowrap; display: none; }
-  .site-nav__phone-mobile { display: none; }
   .btn-sm { padding: .5rem 1rem; min-height: 44px; font-size: .9rem; min-width: 44px; }
   @media (min-width: 900px) { .site-header__phone { display: inline; } }
+  /* hamburger button */
+  .site-nav__burger { display: none; width: 44px; height: 44px; padding: 0; margin-left: auto; background: none; border: none; cursor: pointer; color: var(--color-brand); align-items: center; justify-content: center; flex-direction: column; }
+  .site-nav__burger:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; border-radius: var(--radius-btn); }
+  .site-nav__bar { display: block; width: 22px; height: 2px; margin: 3px 0; background: currentColor; border-radius: 1px; transition: transform 250ms cubic-bezier(.2,.8,.2,1), opacity 250ms cubic-bezier(.2,.8,.2,1); transform-origin: center; }
+  .site-nav__burger.is-open .site-nav__bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .site-nav__burger.is-open .site-nav__bar:nth-child(2) { opacity: 0; }
+  .site-nav__burger.is-open .site-nav__bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  /* dropdown panel (animated) */
+  .site-nav__panel { display: none; }
+  .site-nav__panel-menu { list-style: none; margin: 0; padding: 0; }
+  .site-nav__panel-menu li:not(:last-child) { border-bottom: 1px solid var(--color-border); }
+  .site-nav__panel-menu a { display: flex; align-items: center; width: 100%; min-height: 48px; padding: .75rem 1.25rem; font-size: 17px; color: var(--color-text); transition: background var(--transition); }
+  .site-nav__panel-menu a:hover { background: var(--color-bg-alt); }
+  .site-nav__phone-item a { font-weight: 700; }
   @media (max-width: 899px) {
-    .site-header__inner { gap: .5rem; }
-    .site-header__logo { flex-shrink: 0; }
-    .site-nav { justify-content: flex-end; }
+    .site-header__inner { gap: .5rem; min-height: 64px; padding-block: .5rem; }
+    .site-header__logo { flex-shrink: 0; gap: 10px; }
+    .site-header__logo img { height: 40px; width: auto; }
+    .site-header__logo-text { font-size: clamp(1rem, 4.6vw, 1.25rem); white-space: nowrap; }
+    .site-nav--desktop { display: none; }
+    .site-header__right { display: none; }
     .site-nav__burger { display: inline-flex; }
-    .site-nav__menu { display: none; flex-direction: column; width: 100%; padding: .5rem 0; }
-    .site-nav__menu.is-open { display: flex; }
-    .site-nav__menu a { word-break: break-word; }
-    .site-header__right { margin-left: 0; }
-    .site-header__cta { display: none; }
-    .site-nav__phone-mobile { display: list-item; }
-    .site-nav__phone-mobile a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; padding: .4rem .6rem; border-radius: var(--radius-btn); white-space: nowrap; }
+    /* animated panel */
+    .site-nav__panel {
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0; right: 0;
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: 0 8px 24px rgba(107, 62, 27, 0.18);
+      opacity: 0;
+      transform: translateY(-8px);
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 250ms cubic-bezier(.2,.8,.2,1), transform 250ms cubic-bezier(.2,.8,.2,1), visibility 0s linear 250ms;
+    }
+    .site-nav__panel.is-open {
+      opacity: 1;
+      transform: none;
+      visibility: visible;
+      pointer-events: auto;
+      transition: opacity 250ms cubic-bezier(.2,.8,.2,1), transform 250ms cubic-bezier(.2,.8,.2,1), visibility 0s linear 0s;
+    }
   }
   @media (max-width: 359px) {
     .site-header__logo-text { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .site-nav__panel { transition: none; }
+    .site-nav__bar { transition: none; }
   }
 </style>
 
 <script is:inline>
   (function () {
     var burger = document.getElementById('burger');
-    var menu = document.getElementById('site-nav-menu');
-    if (burger && menu) {
-      burger.addEventListener('click', function () {
-        var open = menu.classList.toggle('is-open');
-        burger.setAttribute('aria-expanded', String(open));
-      });
+    var panel = document.getElementById('site-nav-panel');
+    var header = document.querySelector('.site-header');
+    if (!burger || !panel) return;
+    function setOpen(open) {
+      panel.classList.toggle('is-open', open);
+      burger.classList.toggle('is-open', open);
+      burger.setAttribute('aria-expanded', String(open));
     }
+    burger.addEventListener('click', function () {
+      setOpen(!panel.classList.contains('is-open'));
+    });
+    panel.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setOpen(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && panel.classList.contains('is-open')) {
+        setOpen(false);
+        burger.focus();
+      }
+    });
+    document.addEventListener('click', function (e) {
+      if (panel.classList.contains('is-open') && header && !header.contains(e.target)) {
+        setOpen(false);
+      }
+    });
+    var mq = window.matchMedia('(min-width: 900px)');
+    function reset() { if (mq.matches) setOpen(false); }
+    if (mq.addEventListener) mq.addEventListener('change', reset);
+    else mq.addListener(reset);
   })();
 </script>
