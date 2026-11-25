@@ -7,8 +7,8 @@
 <style>
   .sticky-order {
     position: fixed;
-    bottom: calc(24px + env(safe-area-inset-bottom));
-    right: 24px;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    right: max(16px, env(safe-area-inset-right));
     z-index: 1000;
     width: 86px;
     height: 86px;
@@ -28,7 +28,7 @@
   @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
   @media (prefers-reduced-motion: reduce) { .sticky-order { animation: none; } }
   @media (max-width: 899px) {
-    .sticky-order { width: 74px; height: 74px; bottom: calc(16px + env(safe-area-inset-bottom)); right: 16px; }
-    .sticky-order svg { width: 34px; height: 34px; }
+    .sticky-order { width: 56px; height: 56px; bottom: max(16px, env(safe-area-inset-bottom)); right: max(16px, env(safe-area-inset-right)); }
+    .sticky-order svg { width: 28px; height: 28px; }
   }
 </style>

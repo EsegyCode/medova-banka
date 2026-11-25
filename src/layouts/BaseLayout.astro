@@ -134,6 +134,6 @@ const webSite = {
   .lead-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1rem; }
   .lead-modal[hidden] { display: none; }
   .lead-modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
-  .lead-modal__dialog { position: relative; background: var(--color-surface); border-radius: var(--radius-card); padding: 1.75rem; width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+  .lead-modal__dialog { position: relative; background: var(--color-surface); border-radius: var(--radius-card); padding: 1.75rem; width: 100%; max-width: min(520px, calc(100vw - 32px)); max-height: calc(100dvh - 96px); overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
   .lead-modal__close { position: absolute; top: .6rem; right: .8rem; background: none; border: none; font-size: 2rem; line-height: 1; cursor: pointer; color: var(--color-text-muted); }
 </style>

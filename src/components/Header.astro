@@ -4,7 +4,7 @@
   <div class="container site-header__inner">
     <a class="site-header__logo" href="/">
       <img src="/logo-medova-banka.jpg" alt="Логотип Медова Банка" width="44" height="44" loading="eager" />
-      <span>Медова Банка</span>
+      <span class="site-header__logo-text">Медова Банка</span>
     </a>
     <nav class="site-nav" aria-label="Головне меню">
       <button class="site-nav__burger" type="button" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="site-nav-menu">☰</button>
@@ -12,6 +12,7 @@
         <li><a href="/#products">Продукція</a></li>
         <li><a href="/pro-pasiku/">Про пасіку</a></li>
         <li><a href="/pytannya-vidpovidi/">Питання та відповіді</a></li>
+        <li class="site-nav__phone-mobile"><a href="tel:+380997011256">+38 (099) 701-12-56</a></li>
       </ul>
     </nav>
     <div class="site-header__right">
@@ -23,24 +24,31 @@
 
 <style>
   .site-header { background: var(--color-surface); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; z-index: 100; }
-.site-header__inner { display: flex; align-items: center; gap: 1rem; padding-block: .75rem; }
-.site-header__logo { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-brand); font-weight: 700; white-space: nowrap; }
-.site-header__logo img { height: 44px; width: auto; object-fit: contain; }
-.site-nav { flex: 1; }
-.site-nav__burger { display: none; font-size: 1.5rem; background: none; border: none; cursor: pointer; min-width: 44px; min-height: 44px; }
-.site-nav__menu { list-style: none; display: flex; gap: .25rem .75rem; flex-wrap: nowrap; }
+  .site-header__inner { display: flex; align-items: center; gap: .75rem; padding-block: .75rem; justify-content: space-between; flex-wrap: nowrap; }
+  .site-header__logo { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-brand); font-weight: 700; min-width: 0; }
+  .site-header__logo img { height: 44px; width: auto; flex-shrink: 0; object-fit: contain; }
+  .site-header__logo-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .site-nav { flex: 1 1 auto; min-width: 0; }
+  .site-nav__burger { display: none; font-size: 1.5rem; background: none; border: none; cursor: pointer; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+  .site-nav__menu { list-style: none; display: flex; gap: .25rem .75rem; flex-wrap: nowrap; }
   .site-nav__menu a { padding: .4rem .6rem; min-height: 44px; display: inline-flex; align-items: center; border-radius: var(--radius-btn); }
   .site-nav__menu a:hover { background: var(--color-bg-alt); }
-  .site-header__right { display: flex; align-items: center; gap: .75rem; margin-left: auto; }
+  .site-header__right { display: flex; align-items: center; gap: .75rem; flex: 0 0 auto; }
   .site-header__phone { font-weight: 600; white-space: nowrap; display: none; }
-  .btn-sm { padding: .5rem 1rem; min-height: 44px; font-size: .9rem; }
+  .site-nav__phone-mobile { display: none; }
+  .btn-sm { padding: .5rem 1rem; min-height: 44px; font-size: .9rem; min-width: 44px; }
   @media (min-width: 900px) { .site-header__phone { display: inline; } }
   @media (max-width: 899px) {
-    .site-nav__burger { display: inline-flex; align-items: center; justify-content: center; }
+    .site-nav__burger { display: inline-flex; }
     .site-nav__menu { display: none; flex-direction: column; width: 100%; padding: .5rem 0; }
     .site-nav__menu.is-open { display: flex; }
+    .site-nav__menu a { word-break: break-word; }
     .site-header__right { margin-left: 0; }
-    .site-header__phone { display: inline; font-size: .9rem; }
+    .site-nav__phone-mobile { display: list-item; }
+    .site-nav__phone-mobile a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; padding: .4rem .6rem; border-radius: var(--radius-btn); white-space: nowrap; }
+  }
+  @media (max-width: 359px) {
+    .site-header__logo-text { display: none; }
   }
 </style>
 

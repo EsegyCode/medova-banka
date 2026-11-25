@@ -36,7 +36,7 @@
   /* Layout */
   --container:   1200px;
   --tap-min:     48px;
-  --section-py:  80px;
+  --section-py:  clamp(2.5rem, 6vw, 5rem);
 
   /* Transitions */
   --transition: 0.2s ease;
@@ -44,8 +44,8 @@
 
 /* ── Reset ──────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
+html { scroll-behavior: smooth; overflow-x: clip; max-width: 100%; }
+body { overflow-x: clip; max-width: 100%;
   font-family: var(--font-body);
   background: var(--color-bg);
   color: var(--color-text);
@@ -54,7 +54,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-img { max-width: 100%; height: auto; display: block; }
+img, video, svg { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration: none; }
 
 /* Skip link */

@@ -32,11 +32,22 @@
       // non-essential scripts gate
       window.dispatchEvent(new CustomEvent('cookieconsent', { detail: { choice: choice } }));
     }
+    function updateWidgetOffset() {
+      var btn = document.querySelector('.sticky-order');
+      if (!btn) return;
+      if (banner && !banner.hidden) {
+        btn.style.bottom = 'calc(' + (banner.offsetHeight + 16) + 'px + env(safe-area-inset-bottom))';
+      } else {
+        btn.style.bottom = '';
+      }
+    }
     function showBanner() {
       if (banner) banner.hidden = false;
+      updateWidgetOffset();
     }
     function hideBanner() {
       if (banner) banner.hidden = true;
+      updateWidgetOffset();
     }
     window.__openCookieBanner = showBanner;
     var consent = readConsent();
@@ -49,6 +60,8 @@
       banner.querySelector('[data-cookie-accept]').addEventListener('click', function () { saveConsent('all'); hideBanner(); });
       banner.querySelector('[data-cookie-necessary]').addEventListener('click', function () { saveConsent('necessary'); hideBanner(); });
     }
+    updateWidgetOffset();
+    window.addEventListener('resize', updateWidgetOffset);
   })();
 </script>
 <style>
