@@ -33,7 +33,7 @@ async function render(p) {
       props: {
         style: {
           width: '1200px', height: '630px', display: 'flex', flexDirection: 'column',
-          background: '#F5EFE6', padding: '60px', position: 'relative',
+          background: '#FDE9BF', padding: '60px', position: 'relative',
           fontFamily: 'Noto Sans', color: '#3E2723',
         },
         children: [
