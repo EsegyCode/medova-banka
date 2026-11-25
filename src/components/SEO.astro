@@ -12,7 +12,8 @@ const { title, description, canonical, image, noindex = false, type = 'website' 
 const siteUrl = site.siteUrl.replace(/\/$/, '');
 const path = canonical || Astro.url.pathname;
 const canonicalUrl = new URL(path, siteUrl + '/').toString();
-const ogImage = image ? (image.startsWith('http') ? `${image}?v=3` : `${siteUrl}${image}?v=3`) : `${siteUrl}/og/og-default.png?v=3`;
+const ogVersion = Astro.url.pathname === '/' ? '4' : '3';
+const ogImage = image ? (image.startsWith('http') ? `${image}?v=${ogVersion}` : `${siteUrl}${image}?v=${ogVersion}`) : `${siteUrl}/og/og-default.png?v=${ogVersion}`;
 ---
 <title>{title}</title>
 <meta name="description" content={description} />

@@ -41,7 +41,7 @@ const pages = [
   },
   {
     file: 'og-home.png',
-    photo: 'photo-7.webp',
+    photo: 'photo-3.webp',
     title: 'Медова Банка',
     subtitle: 'Липовий, соняшниковий, різнотрав\'я. Свіжий мед з доставкою по Україні.',
   },
