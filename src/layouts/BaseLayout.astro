@@ -16,16 +16,16 @@ const {
   schema,
   image,
 } = Astro.props;
-const ogImageMap = {
+const ogImageMap: Record<string, string> = {
   '/': '/og/og-home.png',
   '/pro-pasiku/': '/og/og-about.png',
   '/pytannya-vidpovidi/': '/og/og-faq.png',
   '/polityka-konfidentsiinosti/': '/og/og-privacy.png',
   '/publichna-oferta/': '/og/og-terms.png',
   '/polityka-cookie/': '/og/og-cookies.png',
-  '/dostavka-ta-oplata/': '/og/og-prices.png',
-  '/kontakty/': '/og/og-default.png',
-  '/karta-saitu/': '/og/og-default.png',
+  '/dostavka-ta-oplata/': '/og/og-delivery.png',
+  '/kontakty/': '/og/og-contacts.png',
+  '/karta-saitu/': '/og/og-sitemap.png',
 };
 const ogImageFallback = ogImageMap[Astro.url.pathname] || '/og/og-default.png';
 const siteOrigin = (Astro.site ? Astro.site.toString() : siteData.siteUrl).replace(/\/$/, '');
