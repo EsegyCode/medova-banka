@@ -41,6 +41,10 @@ export async function onRequestPost(context: { request: Request; env: Env }): Pr
   const product = String(data.product || '').trim();
   const pageUrl = String(data.page_url || '').trim();
 
+  if (data.consent !== true) {
+    return json({ ok: false }, 400);
+  }
+
   if (!name || name.length < 2 || name.length > 80) {
     return json({ ok: false, error: 'Вкажіть ім\'я (2–80 символів).' }, 400);
   }

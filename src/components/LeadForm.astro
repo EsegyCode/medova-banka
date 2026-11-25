@@ -5,7 +5,7 @@ interface Props {
 }
 const { source = 'section', product = '' } = Astro.props;
 const mockEnv = import.meta.env.PUBLIC_LEAD_MOCK;
-const MOCK_MODE = mockEnv !== 'false';
+const MOCK_MODE = mockEnv === 'true';
 ---
 <form class="lead-form" data-lead-form data-source={source} novalidate>
   <input type="hidden" name="source" value={source} />
@@ -128,6 +128,7 @@ const MOCK_MODE = mockEnv !== 'false';
           product: productVal,
           page_url: form.querySelector('input[name="page_url"]').value,
           company: hp,
+          consent: consent,
         };
 
         function onSuccess() {
