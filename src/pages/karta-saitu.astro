@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { site } from '../data/site.ts';
+const base = site.siteUrl.replace(/\/$/, '');
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Карта сайту',
+    url: `${base}/karta-saitu/`,
+    inLanguage: 'uk',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Головна', item: `${base}/` },
+      { '@type': 'ListItem', position: 2, name: 'Карта сайту', item: `${base}/karta-saitu/` },
+    ],
+  },
+];
+---
+<BaseLayout title="Карта сайту — Медова Банка" description="Карта сайту інтернет-магазину Медова Банка: усі сторінки.">
+  <JsonLd data={jsonLd} />
+  <section class="section">
+    <div class="container content-page">
+      <h1>Карта сайту</h1>
+      <p>Усі сторінки інтернет-магазину «Медова Банка»:</p>
+      <ul>
+        <li><a href="/">Головна</a></li>
+        <li><a href="/#products">Продукція</a></li>
+        <li><a href="/#prices">Ціни</a></li>
+        <li><a href="/pro-pasiku/">Про пасіку</a></li>
+        <li><a href="/dostavka-ta-oplata/">Доставка і оплата</a></li>
+        <li><a href="/pytannya-vidpovidi/">Питання та відповіді</a></li>
+        <li><a href="/kontakty/">Контакти</a></li>
+        <li><a href="/polityka-konfidentsiinosti/">Політика конфіденційності</a></li>
+        <li><a href="/publichna-oferta/">Договір публічної оферти</a></li>
+        <li><a href="/polityka-cookie/">Політика використання cookie</a></li>
+        <li><a href="/karta-saitu/">Карта сайту</a></li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+<style is:global>
+  .content-page { max-width: 760px; margin-inline: auto; }
+  .content-page h1 { color: var(--color-brand); margin-bottom: 1.5rem; }
+  .content-page p, .content-page li { color: var(--color-text-muted); }
+  .content-page a { color: var(--color-brand); font-weight: 600; }
+</style>

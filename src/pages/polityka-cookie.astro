@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { site } from '../data/site.ts';
+if (import.meta.env.DEV) console.warn('TODO: seller legal data (site.ts) is not filled yet.');
+const isDev = import.meta.env.DEV;
+const base = site.siteUrl.replace(/\/$/, '');
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Політика використання cookie',
+    url: `${base}/polityka-cookie/`,
+    dateModified: site.lastUpdated,
+    inLanguage: 'uk',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Головна', item: `${base}/` },
+      { '@type': 'ListItem', position: 2, name: 'Політика використання cookie', item: `${base}/polityka-cookie/` },
+    ],
+  },
+];
+---
+<BaseLayout title="Політика використання cookie — Медова Банка" description="Політика використання cookie сайту Медова Банка: які cookie ми використовуємо і як змінити налаштування.">
+  <JsonLd data={jsonLd} />
+  <section class="section">
+    <div class="container content-page">
+      <h1>Політика використання cookie</h1>
+      <p class="legal-updated">Останнє оновлення: {site.lastUpdated}</p>
+      {isDev && <p class="legal-todo"><strong>DEV:</strong> заповніть дані продавця у src/data/site.ts.</p>}
+      <p>Cookie — невеликі текстові файли, які сайт зберігає у вашому браузері.</p>
+      <h2>1. Які технології зберігання ми використовуємо</h2>
+      <table class="cookie-table">
+        <thead><tr><th>Назва</th><th>Призначення</th><th>Тип / строк</th></tr></thead>
+        <tbody>
+          <tr><td>mb_cookie_consent</td><td>Зберігає ваш вибір у банері cookie (версія, варіант, час)</td><td>localStorage + first-party cookie, 12 місяців</td></tr>
+        </tbody>
+      </table>
+      <p>Сайт сам по собі не встановлює інших cookie і не підключає сторонні аналітичні або рекламні сервіси. Якщо в майбутньому такі з'являться (наприклад аналітика), вони завантажуються лише після вашої згоди і будуть додані до цієї таблиці.</p>
+      <h2>2. Категорії</h2>
+      <ul>
+        <li><strong>Строго необхідні:</strong> базова робота сайту та збереження вашого вибору cookie.</li>
+        <li><strong>Налаштування/функціональні:</strong> не використовуються.</li>
+        <li><strong>Аналітика:</strong> не використовується.</li>
+        <li><strong>Маркетинг:</strong> не використовується.</li>
+      </ul>
+      <h2>3. Як змінити або відкликати згоду</h2>
+      <p>Ви можете змінити налаштування будь-коли через посилання «Налаштування cookie» в підвалі сайту або натиснувши кнопку нижче.</p>
+      <p><button type="button" class="btn btn-outline" id="reopen-cookie-settings">Змінити налаштування cookie</button></p>
+      <p>Також можна заблокувати cookie в налаштуваннях браузера (Chrome, Firefox, Safari, Edge). Це може вплинути на роботу частини функцій сайту.</p>
+      <h2>4. Контакти</h2>
+      <p>З питань щодо cookie і даних: {site.email}, {site.phone}. Політика конфіденційності: <a href="/polityka-konfidentsiinosti/">/polityka-konfidentsiinosti/</a>.</p>
+    </div>
+  </section>
+  <script is:inline>
+    (function () {
+      var btn = document.getElementById('reopen-cookie-settings');
+      if (btn) btn.addEventListener('click', function () {
+        try { localStorage.removeItem('mb_cookie_consent'); } catch (e) {}
+        if (typeof window.__openCookieBanner === 'function') window.__openCookieBanner();
+        else alert('Оновіть сторінку, щоб побачити банер cookie.');
+      });
+    })();
+  </script>
+</BaseLayout>
+<style is:global>
+  .content-page { max-width: 760px; margin-inline: auto; }
+  .content-page h1 { color: var(--color-brand); margin-bottom: 1.5rem; }
+  .content-page h2 { color: var(--color-brand); margin: 1.5rem 0 .5rem; }
+  .content-page p, .content-page li { color: var(--color-text-muted); }
+  .legal-updated { font-size: .9rem; color: var(--color-text-muted); margin-bottom: 1.5rem; }
+  .legal-todo { background: #fff3cd; border: 1px solid #ffe08a; padding: .75rem 1rem; border-radius: var(--radius-btn); color: #6b4a00; margin-bottom: 1.5rem; }
+  .cookie-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+  .cookie-table th, .cookie-table td { border: 1px solid var(--color-border); padding: .5rem .75rem; text-align: left; color: var(--color-text-muted); }
+  .cookie-table th { background: var(--color-surface); color: var(--color-brand); }
+</style>

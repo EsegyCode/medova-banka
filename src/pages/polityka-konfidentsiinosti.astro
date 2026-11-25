@@ -1,8 +1,92 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { site } from '../data/site.ts';
+if (import.meta.env.DEV) console.warn('TODO: seller legal data (site.ts) is not filled yet.');
+const isDev = import.meta.env.DEV;
+const base = site.siteUrl.replace(/\/$/, '');
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Політика конфіденційності',
+    url: `${base}/polityka-konfidentsiinosti/`,
+    dateModified: site.lastUpdated,
+    inLanguage: 'uk',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Головна', item: `${base}/` },
+      { '@type': 'ListItem', position: 2, name: 'Політика конфіденційності', item: `${base}/polityka-konfidentsiinosti/` },
+    ],
+  },
+];
 ---
-<BaseLayout title="Перенаправлення — Політика конфіденційності | Медова Банка" description="Сторінку переміщено." canonical="/privacy/" noindex>
-  <meta http-equiv="refresh" content="0; url=/privacy/" slot="head" />
-  <section class="section"><div class="container content-page"><h1>Сторінку переміщено</h1><p>Нова адреса: <a href="/privacy/">/privacy/</a>.</p></div></section>
+<BaseLayout title="Політика конфіденційності — Медова Банка" description="Політика конфіденційності інтернет-магазину Медова Банка: які дані ми збираємо та як використовуємо.">
+  <JsonLd data={jsonLd} />
+  <section class="section">
+    <div class="container content-page">
+      <h1>Політика конфіденційності</h1>
+      <p class="legal-updated">Останнє оновлення: {site.lastUpdated}</p>
+      {isDev && <p class="legal-todo"><strong>DEV:</strong> заповніть дані продавця у src/data/site.ts (legal name, ЄДРПОУ/РНОКПП, адреса).</p>}
+      <nav class="legal-toc" aria-label="Зміст">
+        <ul>
+          <li><a href="#general">1. Загальні положення</a></li>
+          <li><a href="#data">2. Які дані ми збираємо</a></li>
+          <li><a href="#purposes">3. Цілі обробки</a></li>
+          <li><a href="#grounds">4. Правові підстави</a></li>
+          <li><a href="#recipients">5. Кому передаються дані</a></li>
+          <li><a href="#retention">6. Строки зберігання</a></li>
+          <li><a href="#rights">7. Ваші права</a></li>
+          <li><a href="#security">8. Захист і діти</a></li>
+          <li><a href="#changes">9. Зміни та контакти</a></li>
+        </ul>
+      </nav>
+      <h2 id="general">1. Загальні положення</h2>
+      <p>Ця політика описує порядок збору, обробки та захисту персональних даних відвідувачів і клієнтів інтернет-магазину «Медова Банка» відповідно до Закону України «Про захист персональних даних».</p>
+      <p>Контролер персональних даних: Продавець — {site.seller.legalName} (TODO: повна назва), ID {site.seller.taxId} (TODO). Контакти: {site.email}, {site.phone}. Адреса: {site.addressLocality}, {site.addressRegion}, {site.country} (місто на рівні, точна адреса TODO).</p>
+      <h2 id="data">2. Які дані ми збираємо</h2>
+      <ul>
+        <li>Ім'я, номер телефону, обраний сорт і фасування меду.</li>
+        <li>Дані доставки, якщо ви їх повідомляєте: місто, відділення Нової пошти/Укрпошти.</li>
+        <li>Технічні дані: IP-адреса, тип браузера, мова, сторінки, які ви переглядаєте, файли cookie.</li>
+        <li>Повідомлення, які ви надсилаєте через Telegram-бот {site.telegramBot}.</li>
+      </ul>
+      <p>Ми не збираємо платіжні реквізити карток — оплату уточнюємо при замовленні без збереження даних картки.</p>
+      <h2 id="purposes">3. Цілі обробки</h2>
+      <ul>
+        <li>Зв'язок із клієнтом щодо замовлення, консультація.</li>
+        <li>Виконання та доставка замовлення.</li>
+        <li>Виконання бухгалтерських і податкових обов'язків.</li>
+        <li>Безпека сайту, захист від спаму й зловживань.</li>
+        <li>Аналітика відвідуваності — лише за вашою згодою, якщо такі інструменти використовуються.</li>
+      </ul>
+      <h2 id="grounds">4. Правові підстави</h2>
+      <p>Згода (чекбокс у формі замовлення), виконання договору (замовлення), виконання законних обов'язків (облік, податки), а також наш законний інтерес у безпеці сайту.</p>
+      <h2 id="recipients">5. Кому передаються дані</h2>
+      <p>Службам доставки (Нова пошта, Укрпошта), хостинг-провайдеру Cloudflare Pages, месенджеру Telegram (зокрема через функцію сайту /api/lead, яка пересилає дані заявки у Telegram), Cloudflare як захисту та хостингу. <strong>Ми не продаємо і не здаємо в оренду ваші персональні дані.</strong></p>
+      <h2 id="retention">6. Строки зберігання</h2>
+      <p>Дані замовлення зберігаються стільки, скільки потрібно для виконання замовлення та для виконання законних обов'язків з обліку (TODO: підтвердити конкретні строки з власником/бухгалтером). Технічні дані й cookie — згідно з їхніми строками дії.</p>
+      <h2 id="rights">7. Ваші права</h2>
+      <p>Ви маєте право на доступ, виправлення, видалення даних, відкликання згоди, заперечення проти обробки, а також на звернення до Уповноваженого Верховної Ради України з прав людини (Омбудсмана) у разі порушення ваших прав.</p>
+      <p>Для реалізації прав напишіть на {site.email} або зателефонуйте {site.phone}.</p>
+      <h2 id="security">8. Захист даних і діти</h2>
+      <p>Ми вживаємо розумних технічних і організаційних заходів для захисту даних. Сайт не призначений для осіб молодше 18 років і не збирає їхні дані свідомо.</p>
+      <h2 id="changes">9. Зміни та контакти</h2>
+      <p>Ми можемо оновлювати цю політику. Актуальна версія завжди опублікована на цій сторінці. З питань щодо персональних даних: {site.email}, {site.phone}.</p>
+    </div>
+  </section>
 </BaseLayout>
-<style is:global>.content-page{max-width:760px;margin-inline:auto;}</style>
+<style is:global>
+  .content-page { max-width: 760px; margin-inline: auto; }
+  .content-page h1 { color: var(--color-brand); margin-bottom: 1.5rem; }
+  .content-page h2 { color: var(--color-brand); margin: 1.5rem 0 .5rem; }
+  .content-page p, .content-page li { color: var(--color-text-muted); }
+  .legal-updated { font-size: .9rem; color: var(--color-text-muted); margin-bottom: 1.5rem; }
+  .legal-todo { background: #fff3cd; border: 1px solid #ffe08a; padding: .75rem 1rem; border-radius: var(--radius-btn); color: #6b4a00; margin-bottom: 1.5rem; }
+  .legal-toc { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-card); padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+  .legal-toc ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .25rem; }
+  .legal-toc a { color: var(--color-brand); font-size: .95rem; }
+</style>

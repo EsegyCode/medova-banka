@@ -29,9 +29,10 @@ export function GET() {
 - [Доставка і оплата](${base}/dostavka-ta-oplata/)
 - [Контакти](${base}/kontakty/)
 - [Питання та відповіді](${base}/pytannya-vidpovidi/)
-- [Політика конфіденційності](${base}/privacy/)
-- [Договір публічної оферти](${base}/terms/)
-- [Політика використання cookie](${base}/cookies/)
+- [Карта сайту](${base}/karta-saitu/)
+- [Політика конфіденційності](${base}/polityka-konfidentsiinosti/)
+- [Договір публічної оферти](${base}/publichna-oferta/)
+- [Політика використання cookie](${base}/polityka-cookie/)
 - [Повний текст](${base}/llms-full.txt)
 
 ## Optional

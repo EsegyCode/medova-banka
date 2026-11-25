@@ -40,9 +40,10 @@ ${faqText}
 - Доставка і оплата: ${base}/dostavka-ta-oplata/
 - Контакти: ${base}/kontakty/
 - FAQ: ${base}/pytannya-vidpovidi/
-- Політика конфіденційності: ${base}/privacy/
-- Договір публічної оферти: ${base}/terms/
-- Політика cookie: ${base}/cookies/
+- Карта сайту: ${base}/karta-saitu/
+- Політика конфіденційності: ${base}/polityka-konfidentsiinosti/
+- Договір публічної оферти: ${base}/publichna-oferta/
+- Політика cookie: ${base}/polityka-cookie/
 `;
   return new Response(body, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
 }
