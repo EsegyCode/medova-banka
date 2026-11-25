@@ -30,10 +30,12 @@ import { products } from '../data/products.ts';
 </section>
 
 <style>
-  .product-grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+  .product-grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; align-items: stretch; }
   @media (min-width: 900px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
-  .product-card__image { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center; border-radius: var(--radius-card) var(--radius-card) 0 0; display: block; }
-  .product-card__body { padding: 1.25rem; display: grid; gap: .75rem; }
+  .product-card { display: flex; flex-direction: column; height: 100%; }
+  .product-card__image { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center; border-radius: var(--radius-card) var(--radius-card) 0 0; display: block; flex-shrink: 0; }
+  .product-card__body { padding: 1.25rem; display: flex; flex-direction: column; gap: .75rem; flex: 1 1 auto; }
+  .product-card__body p { flex: 1 1 auto; }
   .product-card__body h3 { color: var(--color-brand); }
   .product-card__prices { display: flex; gap: 1.5rem; }
   .price-label { display: block; font-size: .85rem; color: var(--color-text-muted); }
