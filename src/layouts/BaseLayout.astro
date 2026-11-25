@@ -78,6 +78,12 @@ const webSite = {
   <JsonLd data={organization} />
   <JsonLd data={webSite} />
   {schema && <JsonLd data={schema} />}
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-5Z7X6WH7"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти до контенту</a>
